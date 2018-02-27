@@ -1,16 +1,21 @@
 <h2>Welcome to the Employees Page</h2>
+<h1><%= @employee.name() %></h1>
+
+<a href="/employees/<%= @employee.id() %>/edit"> Edit Employee name:</a>
+
 
 <% if @employees.any?() %>
-  <p>Click on an employee to see information about it and add projects to it:</p>
+  <p>Click on a Employee to see information about it and add projects to it:</p>
 
   <ul>
     <% @employees.each do |employee| %>
-    <li><a href="/employee/<%= employee.id() %>"><%= employee.name() %></a></li>
+    <li><a href="/employees/<%= employee.id() %>"><%= employee.name() %></a></li>
     <% end %>
   </ul>
 <% else %>
   <p>There are no employees added yet!</p>
 <% end %>
 
+<a href="/employees/<%= @employee.id() %>/edit"> Edit Employee name:</a>
 
 <p><a href="/">Return to Home Page</a></p>
