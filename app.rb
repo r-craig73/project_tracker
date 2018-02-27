@@ -14,7 +14,7 @@ get ('/') do
   erb(:index)
 end
 
-get('/employee/new') do
+get('/employees_home') do
   erb(:employee_form)
 end
 
