@@ -46,8 +46,8 @@ end
 patch("/employees/:id") do
   name = params.fetch("name")
   @employee = Employee.find(params.fetch("id").to_i())
-  @employee.update({:name => name})
-  erb(:employee)
+  @employees = @employee.update({:name => name})
+  erb(:index)
 end
 
 delete("/employees/:id") do
