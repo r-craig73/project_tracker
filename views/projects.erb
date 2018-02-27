@@ -1,5 +1,7 @@
+<h1>Welcome to the Projects page</h1>
+
 <% if @projects.any?() %>
-  <p>Click on a Project to see which employees are working on the project:</p>
+  <p>Click on a Project to see information about it and add employees to it:</p>
 
   <ul>
     <% @projects.each do |project| %>
@@ -10,6 +12,5 @@
   <p>There are no projects added yet!</p>
 <% end %>
 
-<a href="/projects/<%= @project.id() %>/edit"> Edit Project name</a>
 
 <p><a href="/">Return to Home Page</a></p>

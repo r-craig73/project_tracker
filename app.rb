@@ -18,6 +18,10 @@ get('/employee/new') do
   erb(:employee_form)
 end
 
+get('/projects_home') do
+  erb(:project_form)
+end
+
 post('/employees') do
   name = params.fetch('name')
   employee = Employee.new({:name => name, :id => nil})
@@ -26,9 +30,22 @@ post('/employees') do
   erb(:employees)
 end
 
+post('/projects') do
+  title = params.fetch('title')
+  project = Project.new({:title => title, :id => nil})
+  project.save()
+  @projects = Project.all()
+  erb(:projects)
+end
+
 get('/employees') do
   @employees = Employee.all()
   erb(:employees)
+end
+
+get('/projects') do
+  @projects = Project.all()
+  erb(:projects)
 end
 
 get('/employees/:id') do
@@ -37,10 +54,22 @@ get('/employees/:id') do
   erb(:employee)
 end
 
+get('/projects/:id') do
+  @project = Project.find(params.fetch("id").to_i())
+  @projects = Project.all()
+  erb(:project)
+end
+
 get('/employees/:id/edit') do
   @employee = Employee.find(params.fetch("id").to_i())
   @employees = Employee.all()
   erb(:employee_edit)
+end
+
+get('/projects/:id/edit') do
+  @project = Project.find(params.fetch("id").to_i())
+  @projects = Project.all()
+  erb(:project_edit)
 end
 
 patch("/employees/:id") do
@@ -50,9 +79,23 @@ patch("/employees/:id") do
   erb(:index)
 end
 
+patch("/projects/:id") do
+  title = params.fetch("title")
+  @project = Project.find(params.fetch("id").to_i())
+  @projects = @project.update({:title => title})
+  erb(:index)
+end
+
 delete("/employees/:id") do
   @employee = Employee.find(params.fetch("id").to_i())
   @employee.delete()
   @employees = Employee.all()
   erb(:employees)
+end
+
+delete("/projects/:id") do
+  @project = Project.find(params.fetch("id").to_i())
+  @project.delete()
+  @projects = Project.all()
+  erb(:projects)
 end
